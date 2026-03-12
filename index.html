@@ -947,7 +947,8 @@ function refreshReqBadge() {
 
 function toggleReqPanel() {
   const p = $('reqPanel');
-  p.style.display = p.style.display==='none' ? '' : 'none';
+  const isHidden = p.style.display === 'none' || p.style.display === '';
+  p.style.display = isHidden ? 'block' : 'none';
 }
 
 async function acceptReq(from) {
