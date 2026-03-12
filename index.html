@@ -197,7 +197,7 @@ html, body {
 .searchInp::placeholder { color: var(--textMuted); }
 
 /* Requests panel */
-#reqPanel { display: none; }
+#reqPanel { }
 .secLabel {
   padding: 10px 16px 5px;
   font-size: 10px; font-weight: 800; text-transform: uppercase;
@@ -916,7 +916,8 @@ function renderRequests() {
   const list = $('reqList');
   list.innerHTML = '';
   const reqs = me.friendRequests||[];
-  $('reqPanel').style.display = reqs.length ? '' : 'none';
+  if (!reqs.length) { $('reqPanel').style.display = 'none'; return; }
+  $('reqPanel').style.display = 'block';
 
   reqs.forEach(from => {
     const item = document.createElement('div');
@@ -947,8 +948,9 @@ function refreshReqBadge() {
 
 function toggleReqPanel() {
   const p = $('reqPanel');
-  const isHidden = p.style.display === 'none' || p.style.display === '';
-  p.style.display = isHidden ? 'block' : 'none';
+  const reqs = me.friendRequests||[];
+  if (!reqs.length) return;
+  p.style.display = (p.style.display === 'none' || p.style.display === '') ? 'block' : 'none';
 }
 
 async function acceptReq(from) {
