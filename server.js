@@ -52,7 +52,7 @@ function sanitizeUser(user) {
 
 // ── MIDDLEWARE ──
 app.use(express.json());
-app.use(express.static(path.join(__dirname));
+app.use(express.static(__dirname));
 
 // ── AUTH ROUTES ──
 app.post('/api/register', (req, res) => {
